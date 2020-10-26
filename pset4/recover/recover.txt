@@ -1,0 +1,32 @@
+Objective: Recover deleted JPEG images from a file
+
+JPEGs have "signatures", patterns of bytes that can distinguish them from
+    other file formats.
+
+First three bytes of JPEGs are
+0xff 0xd8 0xff: 11111111 11011000 11111111
+    and the fourth byte is either:
+0xe0 - 0xef : (1110XXXX)
+
+Digital cameras initialize memory cards with a FAT file system whose "block size" is 512 Bytes.
+    These cameras only write to those cards in units of 512 B, and therefore, a photo
+    1MB is size (1,048,576B / 512) takes up 2048 blocks on a memory card. If the photo isn't
+    an exact size to be divided by 512, say 100B less than the example above, the wasted space
+    on disk is called "slack space".
+
+Implementation:
+- Iterate over a copy of a memory card, loooking for JPEG's signatures.
+- Each time you find a signature, open a new file for writing and start filling
+    that file with bytes from the memory card, closing the file only once another
+    signature is encountered.
+- Rather than read the memory card bytes one at a time, read 512 of them at a time
+    into a buffer for efficiency's sake.
+- Any slack space will be filled with 0s
+- A forensic image of the memory card has been stored in a file called card.raw.
+
+
+TODO
+- Open memory card file
+- Look for the beginning of a JPEG
+- Open a new JPEG file
+- Write 512 bytes until a new JPEG is found

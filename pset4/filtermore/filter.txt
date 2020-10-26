@@ -1,0 +1,16 @@
+Convolutional Matrix
+
+
+Gx
+-1 0 1 multiply these by the color values and add together (do this for red, green and blue)
+-2 0 2
+-1 0 1
+
+Gy
+-1 -2 -1
+ 0  0  0
+ 1  2  1 
+ 
+Compute Gx and Gy for each channel of red, green, and blue
+- For pixels at the border, treat any pixel beyond the border as having all 0 values
+- Each new channel value should be sqrt(Gx^2 + Gy^2)
