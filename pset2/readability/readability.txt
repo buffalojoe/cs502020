@@ -1,0 +1,26 @@
+Coleman-Liau index: Designed to output what U.S. grade level is needed
+    to understand a given text.
+    
+    Formula: index = 0.0588 * L - 0.296 * S - 15.8
+        L = average of letters per 100 words in the text
+        S = average number of sentences per 100 words in the text
+        
+    As the average number of letters and words per sentence increases,
+        the Coleman-Liau index gives the text a higher reading level.
+    
+    Output = Grade X, with X being 
+        Before Grade 1, Grade 1, ..., Grade 16, Grade 16+
+    
+Counting letters (not symbols) in a text:
+
+    string inputtext = get_string("Text: \n");
+        int charcount = strlen(inputtext);
+
+        int letters = 0;
+        for (int i = 0; i < charcount; i++)
+        {
+            if (((int) inputtext[i] >= 65 && (int) inputtext[i] <= 90) || ((int) inputtext[i] >= 97 && (int) inputtext[i] <= 122))
+            {
+                letters++;
+            }
+        }
