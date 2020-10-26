@@ -1,0 +1,34 @@
+Take a CSV file of all of the hogwarts students and write a Python program that will import all
+    of that data into a sqlite database where the database will have a single table called students
+    with columns (first, middle, last, house, birth).
+    
+Note that there are columns for first, middle, and last name in the table, however, the CSV file
+    only has a column for names. The middle column could be NULL if the student does not have a middle
+    name in the CSV. 
+    
+TASKS
+
+import.py: Inserting data into the database
+    1. Require a single CLI and print an error/exit if the incorrect number of arguments is given
+    2. Open CSV file given by command-line argument (use csv.reader)
+    3. For each row, parse the name (string split and slicing, and use None for student's
+        middle name if they do not have one))
+                
+                Code for taking a single name and splicing into separat first, middle, and last
+                    name = row[0]
+                    sname = name.split()
+
+                    if len(sname) != 3:
+                        sname.insert(1, 'None')
+        
+    4. Insert each student into the students table of students.db (Use db.execute)
+
+
+roster.py: reading data from that database and presenting back to the user
+    1. Check CLI
+    2. Query database for all students in house
+        Use db.execute to SELECT rows from the table
+            Return value will be a list of Python dicts, where each dict represents a row in the table (keys are columns and values are the values in that column)
+        Remember to check for NULL values for middle names
+    3. Print out each student's full name and birth year
+    4. Students should be sorted alphabetically by last name, then first name
