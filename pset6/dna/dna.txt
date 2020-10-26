@@ -1,0 +1,20 @@
+First row of CSV file has name as the first column, and then STRs for each of the remaining columns
+Each remaining row corresponds to a person.
+
+A sequence of DNA is also provided in several txt files.
+
+STEPS
+    1. Open the CSV file and the DNA sequence and read contents into memory
+        Python's csv module has reader and DictReader
+        Python's sys module gives you access to sys.argv for CLIs
+        Open a text file using f = open(filename), and read it's contents using f.read()
+    2. For each STR, compute the longest run of consecutive repeats in the DNA sequence (text file)
+        Through the DNA sequence, compute for every position within the DNA sequence how many times the STR repeats
+        For each position in the sequence: compute how many times the STR repeats starting at that position
+            For each position, keep checking successive substrings until the STR repeats no longer
+            At the end, you'll want to keep track of the max number of times a particular STR repeats in sequence
+        len(s) in Python will get you the length of the string s
+        s[i:j] in Python takes the string s, and returns the substring with all characters from the ith character up to (but not including) the jth
+    3. Compare the STR counts against each row in the CSV file
+        Save STR counts in some data strcture
+        For each row in the data, check is each STR count matches. If so, print out the person's name
