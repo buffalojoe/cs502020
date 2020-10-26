@@ -1,0 +1,5 @@
+Test Number: 4012888888881881
+
+Luhn's Algorithm Pseudocode
+- Determine the identity of each digit in the credit card number
+- Take every other digit of Credit Card Number starting with the second digit, and multiply by two
